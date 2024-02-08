@@ -9,5 +9,5 @@ public interface CategoryService {
     List<CategoryDTO> getAllCategories();
     CategoryDTO createCategory(CategoryDTO categoryDTO);
     CategoryDTO updateCategory(Integer id, CategoryDTO categoryDTO);
-    void deleteDocument(Integer id);
+    void deleteCategory(Integer id);
 }

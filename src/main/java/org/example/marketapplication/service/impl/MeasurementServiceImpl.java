@@ -42,7 +42,7 @@ public class MeasurementServiceImpl implements MeasurementService {
     }
 
     @Override
-    public void deleteDocument(Integer id) {
+    public void deleteMeasurement(Integer id) {
         repository.delete(repository.getReferenceById(id));
 
     }

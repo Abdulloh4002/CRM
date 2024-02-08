@@ -52,7 +52,7 @@ public class IncomingProductsServiceImpl implements IncomingProductsService {
     }
 
     @Override
-    public void deleteDocument(Integer id) {
+    public void deleteIncomingProducts(Integer id) {
         repository.delete(repository.getReferenceById(id));
 
     }

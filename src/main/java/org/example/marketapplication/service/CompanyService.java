@@ -9,5 +9,5 @@ public interface CompanyService {
     List<CompanyDTO> getAllCompanies();
     CompanyDTO createCompany(CompanyDTO companyDTO);
     CompanyDTO updateCompany(Integer id, CompanyDTO companyDTO);
-    void deleteDocument(Integer id);
+    void deleteCompany(Integer id);
 }

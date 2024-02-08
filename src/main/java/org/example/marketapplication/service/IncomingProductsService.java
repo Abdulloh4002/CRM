@@ -9,5 +9,5 @@ public interface IncomingProductsService {
     List<IncomingProductsDTO> getAllIncomingProducts();
     IncomingProductsDTO createIncomingProducts(IncomingProductsDTO incomingProductsDTO);
     IncomingProductsDTO updateIncomingProducts(Integer id, IncomingProductsDTO incomingProductsDTO);
-    void deleteDocument(Integer id);
+    void deleteIncomingProducts(Integer id);
 }

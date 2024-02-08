@@ -44,7 +44,7 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public void deleteDocument(Integer id) {
+    public void deleteCompany(Integer id) {
         repository.delete(repository.getReferenceById(id));
 
     }

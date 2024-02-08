@@ -9,5 +9,5 @@ public interface PriceService {
     List<PriceDTO> getAllPrices();
     PriceDTO createPrice(PriceDTO priceDTO);
     PriceDTO updatePrice(Integer id, PriceDTO priceDTO);
-    void deleteDocument(Integer id);
+    void deletePrice(Integer id);
 }

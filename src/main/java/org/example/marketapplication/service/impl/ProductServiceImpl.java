@@ -49,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteDocument(Integer id) {
+    public void deleteProduct(Integer id) {
         repository.delete(repository.getReferenceById(id));
 
     }

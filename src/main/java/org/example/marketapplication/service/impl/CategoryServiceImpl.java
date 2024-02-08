@@ -42,7 +42,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void deleteDocument(Integer id) {
+    public void deleteCategory(Integer id) {
         repository.delete(repository.getReferenceById(id));
 
     }

@@ -9,5 +9,5 @@ public interface ProductService {
     List<ProductDTO> getAllProducts();
     ProductDTO createProduct(ProductDTO productDTO);
     ProductDTO updateProduct(Integer id, ProductDTO productDTO);
-    void deleteDocument(Integer id);
+    void deleteProduct(Integer id);
 }

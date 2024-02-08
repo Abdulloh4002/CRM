@@ -22,7 +22,7 @@ public class Document{
     @OneToOne(cascade = CascadeType.ALL)
     private Company company;
 
-    @OneToMany(mappedBy = "document")
+    @OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
     private Set<IncomingProducts> incomingProductsSet;
 
     private Integer documentNumber;

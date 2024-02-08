@@ -9,5 +9,5 @@ public interface MeasurementService {
     List<MeasurementDTO> getAllMeasurements();
     MeasurementDTO createMeasurement(MeasurementDTO measurementDTO);
     MeasurementDTO updateMeasurement(Integer id, MeasurementDTO measurementDTO);
-    void deleteDocument(Integer id);
+    void deleteMeasurement(Integer id);
 }

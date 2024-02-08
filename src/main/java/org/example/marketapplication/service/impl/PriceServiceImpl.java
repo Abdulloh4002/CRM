@@ -47,7 +47,7 @@ public class PriceServiceImpl implements PriceService {
     }
 
     @Override
-    public void deleteDocument(Integer id) {
+    public void deletePrice(Integer id) {
         repository.delete(repository.getReferenceById(id));
 
     }
