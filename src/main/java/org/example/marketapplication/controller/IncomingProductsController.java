@@ -1,8 +1,8 @@
 package org.example.marketapplication.controller;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.example.marketapplication.dto.IncomingProductsDTO;
+import org.example.marketapplication.dto.incomingProductsDTO.ReqIncomingProductsDTO;
+import org.example.marketapplication.dto.incomingProductsDTO.ResIncomingProductsDTO;
 import org.example.marketapplication.service.IncomingProductsService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,24 +17,24 @@ public class IncomingProductsController {
     private final IncomingProductsService service;
 
     @GetMapping
-    public List<IncomingProductsDTO> getAllIncomingProducts(){
+    public List<ResIncomingProductsDTO> getAllIncomingProducts(){
         return service.getAllIncomingProducts();
     }
 
     @GetMapping("{id}")
-    public IncomingProductsDTO getIncomingProducts(@PathVariable Integer id){
+    public ResIncomingProductsDTO getIncomingProducts(@PathVariable Integer id){
 
         return service.getIncomingProductsById(id);
     }
 
     @PostMapping
-    public IncomingProductsDTO createIncomingProducts(@RequestBody IncomingProductsDTO incomingProductsDTO){
+    public ResIncomingProductsDTO createIncomingProducts(@RequestBody ReqIncomingProductsDTO incomingProductsDTO){
 
         return service.createIncomingProducts(incomingProductsDTO);
     }
 
     @PutMapping("{id}")
-    public IncomingProductsDTO updateIncomingProducts(@PathVariable Integer id, @RequestBody IncomingProductsDTO incomingProductsDTO ){
+    public ResIncomingProductsDTO updateIncomingProducts(@PathVariable Integer id, @RequestBody ReqIncomingProductsDTO incomingProductsDTO ){
 
         return service.updateIncomingProducts(id, incomingProductsDTO);
 

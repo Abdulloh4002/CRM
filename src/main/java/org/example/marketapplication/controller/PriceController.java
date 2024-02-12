@@ -1,8 +1,8 @@
 package org.example.marketapplication.controller;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.example.marketapplication.dto.PriceDTO;
+import org.example.marketapplication.dto.priceDTO.ReqPriceDTO;
+import org.example.marketapplication.dto.priceDTO.ResPriceDTO;
 import org.example.marketapplication.service.PriceService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,24 +17,24 @@ public class PriceController {
     private final PriceService service;
 
     @GetMapping
-    public List<PriceDTO> getAllPrices(){
+    public List<ResPriceDTO> getAllPrices(){
         return service.getAllPrices();
     }
 
     @GetMapping("{id}")
-    public PriceDTO getPrice(@PathVariable Integer id){
+    public ResPriceDTO getPrice(@PathVariable Integer id){
 
         return service.getPriceById(id);
     }
 
     @PostMapping
-    public PriceDTO createPrice(@RequestBody PriceDTO priceDTO){
+    public ResPriceDTO createPrice(@RequestBody ReqPriceDTO priceDTO){
 
         return service.createPrice(priceDTO);
     }
 
     @PutMapping("{id}")
-    public PriceDTO updatePrice(@PathVariable Integer id, @RequestBody PriceDTO priceDTO ){
+    public ResPriceDTO updatePrice(@PathVariable Integer id, @RequestBody ReqPriceDTO priceDTO ){
 
         return service.updatePrice(id, priceDTO);
 

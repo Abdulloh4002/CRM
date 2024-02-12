@@ -1,7 +1,8 @@
-package org.example.marketapplication.dto;
+package org.example.marketapplication.dto.documentDTO;
 
 import lombok.*;
-import org.example.marketapplication.entity.Company;
+import org.example.marketapplication.dto.CompanyDTO;
+import org.example.marketapplication.dto.incomingProductsDTO.ResIncomingProductsDTO;
 
 import java.util.Date;
 import java.util.Set;
@@ -11,11 +12,10 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-public class DocumentDTO {
+public class ResDocumentDTO {
     private Integer id;
     private Integer documentNumber;
     private CompanyDTO company;
-    private Set<IncomingProductsDTO> incomingProductsDTOSet;
     private Date date;
 
 }

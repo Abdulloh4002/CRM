@@ -1,5 +1,6 @@
 package org.example.marketapplication.entity;
 
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,13 +14,22 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @OneToOne(cascade = CascadeType.ALL)
-    private Category category;
 
     @Column(unique = true)
     private String name;
-    @OneToOne(cascade = CascadeType.ALL)
-    private Measurement unit;
-    private Double amount;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Category category;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Measurement measurement;
+
+    private Double totalAmount;
+
+    @PrePersist
+    public void prePersist(){
+        if (totalAmount==null){
+            totalAmount=0.0;
+        }
+    }
 }

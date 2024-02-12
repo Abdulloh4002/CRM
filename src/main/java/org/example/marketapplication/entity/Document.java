@@ -19,11 +19,9 @@ public class Document{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Company company;
 
-    @OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
-    private Set<IncomingProducts> incomingProductsSet;
 
     private Integer documentNumber;
 

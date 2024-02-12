@@ -16,12 +16,11 @@ public class Price {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Product product;
     private Double price;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
-    private boolean status;
 
 }

@@ -1,13 +1,14 @@
 package org.example.marketapplication.service;
 
-import org.example.marketapplication.dto.ProductDTO;
+import org.example.marketapplication.dto.productDTO.ReqProductDTO;
+import org.example.marketapplication.dto.productDTO.ResProductDTO;
 
 import java.util.List;
 
 public interface ProductService {
-    ProductDTO getProductById(Integer id);
-    List<ProductDTO> getAllProducts();
-    ProductDTO createProduct(ProductDTO productDTO);
-    ProductDTO updateProduct(Integer id, ProductDTO productDTO);
+    ResProductDTO getProductById(Integer id);
+    List<ResProductDTO> getAllProducts();
+    ResProductDTO createProduct(ReqProductDTO productDTO);
+    ResProductDTO updateProduct(Integer id, ReqProductDTO productDTO);
     void deleteProduct(Integer id);
 }

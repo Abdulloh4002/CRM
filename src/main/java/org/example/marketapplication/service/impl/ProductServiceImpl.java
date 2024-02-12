@@ -1,11 +1,12 @@
 package org.example.marketapplication.service.impl;
 
 import lombok.*;
-import org.example.marketapplication.dto.ProductDTO;
+import org.example.marketapplication.dto.productDTO.ReqProductDTO;
+import org.example.marketapplication.dto.productDTO.ResProductDTO;
 import org.example.marketapplication.entity.Product;
-import org.example.marketapplication.mapper.CategoryMapper;
-import org.example.marketapplication.mapper.MeasurementMapper;
 import org.example.marketapplication.mapper.ProductMapper;
+import org.example.marketapplication.repository.CategoryRepository;
+import org.example.marketapplication.repository.MeasurementRepository;
 import org.example.marketapplication.repository.ProductRepository;
 import org.example.marketapplication.service.ProductService;
 import org.springframework.stereotype.Service;
@@ -17,34 +18,34 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository repository;
     private final ProductMapper mapper;
-    private final MeasurementMapper unitMapper;
-    private final CategoryMapper categoryMapper;
+    private final MeasurementRepository measurementRepository;
+    private final CategoryRepository categoryRepository;
 
     @Override
-    public ProductDTO getProductById(Integer id) {
+    public ResProductDTO getProductById(Integer id) {
         return mapper.toDTO(repository.getReferenceById(id));
     }
 
     @Override
-    public List<ProductDTO> getAllProducts() {
-        return mapper.toDTOList(repository.findAll());
+    public List<ResProductDTO> getAllProducts() {
+        return mapper.toListDTO(repository.findAll());
     }
 
     @Override
-    public ProductDTO createProduct(ProductDTO productDTO) {
-        return mapper
-                .toDTO(repository
-                        .save(mapper
-                                .toEntity(productDTO)));
+    public ResProductDTO createProduct(ReqProductDTO productDTO) {
+        Product product = mapper.toEntity(productDTO);
+//        product.setMeasurement(measurementRepository.getReferenceById(productDTO.getMeasurement()));
+//        product.setCategory(categoryRepository.getReferenceById(productDTO.getCategory()));
+        return mapper.toDTO(repository.save(product));
     }
 
     @Override
-    public ProductDTO updateProduct(Integer id, ProductDTO productDTO) {
+    public ResProductDTO updateProduct(Integer id, ReqProductDTO productDTO) {
         Product product = repository.getReferenceById(id);
         product.setName(productDTO.getName());
-        product.setAmount(productDTO.getAmount());
-        product.setUnit(unitMapper.toEntity(productDTO.getMeasurementDTO()));
-        product.setCategory(categoryMapper.toEntity(productDTO.getCategoryDTO()));
+        product.setTotalAmount(productDTO.getTotalAmount());
+        product.setMeasurement(measurementRepository.getReferenceById(productDTO.getMeasurement()));
+        product.setCategory(categoryRepository.getReferenceById(productDTO.getCategory()));
         return mapper.toDTO(repository.save(product));
     }
 

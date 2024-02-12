@@ -5,6 +5,11 @@ spring:
     password: abdulloh2004@
     username: postgres
   jpa:
-    show-sql: true
     hibernate:
       ddl-auto: create-drop
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        format_sql: true

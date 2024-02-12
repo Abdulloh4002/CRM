@@ -1,8 +1,8 @@
 package org.example.marketapplication.controller;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.example.marketapplication.dto.ProductDTO;
+import org.example.marketapplication.dto.productDTO.ReqProductDTO;
+import org.example.marketapplication.dto.productDTO.ResProductDTO;
 import org.example.marketapplication.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,24 +17,24 @@ public class ProductController {
     private final ProductService service;
 
     @GetMapping
-    public List<ProductDTO> getAllProducts(){
+    public List<ResProductDTO> getAllProducts(){
         return service.getAllProducts();
     }
 
     @GetMapping("{id}")
-    public ProductDTO getProduct(@PathVariable Integer id){
+    public ResProductDTO getProduct(@PathVariable Integer id){
 
         return service.getProductById(id);
     }
 
     @PostMapping
-    public ProductDTO createProduct(@RequestBody ProductDTO productDTO){
+    public ResProductDTO createProduct(@RequestBody ReqProductDTO productDTO){
 
         return service.createProduct(productDTO);
     }
 
     @PutMapping("{id}")
-    public ProductDTO updateProduct(@PathVariable Integer id, @RequestBody ProductDTO productDTO ){
+    public ResProductDTO updateProduct(@PathVariable Integer id, @RequestBody ReqProductDTO productDTO ){
 
         return service.updateProduct(id, productDTO);
 

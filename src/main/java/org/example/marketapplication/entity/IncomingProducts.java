@@ -16,9 +16,14 @@ public class IncomingProducts {
     @ManyToOne
     private Document document;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Product product;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Price price;
+
+    private Double amount;
+
+
+
 }

@@ -1,13 +1,15 @@
 package org.example.marketapplication.service.impl;
 
 import lombok.*;
-import org.example.marketapplication.dto.IncomingProductsDTO;
+import org.example.marketapplication.dto.incomingProductsDTO.ReqIncomingProductsDTO;
+import org.example.marketapplication.dto.incomingProductsDTO.ResIncomingProductsDTO;
 import org.example.marketapplication.entity.IncomingProducts;
-import org.example.marketapplication.mapper.DocumentMapper;
+import org.example.marketapplication.entity.Product;
 import org.example.marketapplication.mapper.IncomingProductsMapper;
-import org.example.marketapplication.mapper.PriceMapper;
 import org.example.marketapplication.mapper.ProductMapper;
 import org.example.marketapplication.repository.IncomingProductsRepository;
+import org.example.marketapplication.repository.PriceRepository;
+import org.example.marketapplication.repository.ProductRepository;
 import org.example.marketapplication.service.IncomingProductsService;
 import org.springframework.stereotype.Service;
 
@@ -18,35 +20,47 @@ import java.util.List;
 public class IncomingProductsServiceImpl implements IncomingProductsService {
     private final IncomingProductsRepository repository;
     private final IncomingProductsMapper mapper;
-    private final PriceMapper priceMapper;
-    private final DocumentMapper documentMapper;
-    private final ProductMapper productMapper;
+    private final ProductRepository productRepository;
+    private final PriceRepository priceRepository;
 
     @Override
-    public IncomingProductsDTO getIncomingProductsById(Integer id) {
+    public ResIncomingProductsDTO getIncomingProductsById(Integer id) {
         return mapper.toDTO(repository.getReferenceById(id));
     }
 
     @Override
-    public List<IncomingProductsDTO> getAllIncomingProducts() {
-        return mapper.toDTOList(repository.findAll());
+    public List<ResIncomingProductsDTO> getAllIncomingProducts() {
+        return mapper.toListDTO(repository.findAll());
     }
 
     @Override
-    public IncomingProductsDTO createIncomingProducts(IncomingProductsDTO incomingProductsDTO) {
+    public ResIncomingProductsDTO createIncomingProducts(ReqIncomingProductsDTO incomingProductsDTO) {
+        IncomingProducts incomingProducts = mapper.toEntity(incomingProductsDTO);
+
+        Product product = productRepository.getReferenceById(incomingProductsDTO.getProduct());
+        product.setTotalAmount(product.getTotalAmount() + incomingProducts.getAmount());
+        productRepository.save(product);
+
+//        incomingProducts.setProduct(product);
+//        incomingProducts.setPrice(priceRepository.getReferenceById(incomingProductsDTO.getPrice()));
+
         return mapper
                 .toDTO(repository
-                        .save(mapper
-                                .toEntity(incomingProductsDTO)));
+                        .save(incomingProducts));
     }
 
     @Override
-    public IncomingProductsDTO updateIncomingProducts(Integer id, IncomingProductsDTO incomingProductsDTO) {
+    public ResIncomingProductsDTO updateIncomingProducts(Integer id, ReqIncomingProductsDTO incomingProductsDTO) {
 
         IncomingProducts incomingProducts = repository.getReferenceById(id);
-        incomingProducts.setProduct(productMapper.toEntity(incomingProductsDTO.getProductDTO()));
-        incomingProducts.setPrice(priceMapper.toEntity(incomingProductsDTO.getPriceDTO()));
-        incomingProducts.setDocument(documentMapper.toEntity(incomingProductsDTO.getDocumentDTO()));
+
+        Product product = productRepository.getReferenceById(incomingProductsDTO.getProduct());
+        product.setTotalAmount(product.getTotalAmount() + incomingProducts.getAmount());
+        productRepository.save(product);
+
+        incomingProducts.setProduct(product);
+        incomingProducts.setPrice(priceRepository.getReferenceById(incomingProductsDTO.getPrice()));
+        incomingProducts.setAmount(incomingProductsDTO.getAmount());
 
         return mapper.toDTO(repository.save(incomingProducts));
     }

@@ -1,13 +1,18 @@
 package org.example.marketapplication.service;
 
-import org.example.marketapplication.dto.DocumentDTO;
+import org.example.marketapplication.dto.documentDTO.ReqDocumentDTO;
+import org.example.marketapplication.dto.documentDTO.ResDocumentDTO;
 
 import java.util.List;
 
 public interface DocumentService {
-    DocumentDTO getDocumentById(Integer id);
-    List<DocumentDTO> getAllDocuments();
-    DocumentDTO createDocument(DocumentDTO documentDTO);
-    DocumentDTO updateDocument(Integer id, DocumentDTO documentDTO);
+    ResDocumentDTO getDocumentById(Integer id);
+    List<ResDocumentDTO> getAllDocuments();
+    ResDocumentDTO createDocument(ReqDocumentDTO documentDTO);
+
+
+    ResDocumentDTO updateDocument(Integer id, ReqDocumentDTO documentDTO);
+
+
     void deleteDocument(Integer id);
 }

@@ -1,11 +1,12 @@
 package org.example.marketapplication.service.impl;
 
 import lombok.*;
-import org.example.marketapplication.dto.PriceDTO;
+import org.example.marketapplication.dto.priceDTO.ReqPriceDTO;
+import org.example.marketapplication.dto.priceDTO.ResPriceDTO;
 import org.example.marketapplication.entity.Price;
 import org.example.marketapplication.mapper.PriceMapper;
-import org.example.marketapplication.mapper.ProductMapper;
 import org.example.marketapplication.repository.PriceRepository;
+import org.example.marketapplication.repository.ProductRepository;
 import org.example.marketapplication.service.PriceService;
 import org.springframework.stereotype.Service;
 
@@ -16,32 +17,33 @@ import java.util.List;
 public class PriceServiceImpl implements PriceService {
     private final PriceRepository repository;
     private final PriceMapper mapper;
-    private final ProductMapper productMapper;
+    private final ProductRepository productRepository;
 
     @Override
-    public PriceDTO getPriceById(Integer id) {
+    public ResPriceDTO getPriceById(Integer id) {
         return mapper.toDTO(repository.getReferenceById(id));
     }
 
     @Override
-    public List<PriceDTO> getAllPrices() {
-        return mapper.toDTOList(repository.findAll());
+    public List<ResPriceDTO> getAllPrices() {
+        return mapper.toListDTO(repository.findAll());
     }
 
     @Override
-    public PriceDTO createPrice(PriceDTO priceDTO) {
+    public ResPriceDTO createPrice(ReqPriceDTO priceDTO) {
+
+        Price price = mapper.toEntity(priceDTO);
+//        price.setProduct(productRepository.getReferenceById(priceDTO.getProduct()));
         return mapper
                 .toDTO(repository
-                        .save(mapper
-                                .toEntity(priceDTO)));
+                        .save(price));
     }
 
     @Override
-    public PriceDTO updatePrice(Integer id, PriceDTO priceDTO) {
+    public ResPriceDTO updatePrice(Integer id, ReqPriceDTO priceDTO) {
         Price price = repository.getReferenceById(id);
         price.setPrice(priceDTO.getPrice());
-        price.setProduct(productMapper.toEntity(priceDTO.getProductDTO()));
-        price.setStatus(priceDTO.isStatus());
+        price.setProduct(productRepository.getReferenceById(priceDTO.getProduct()));
         price.setDate(priceDTO.getDate());
         return mapper.toDTO(repository.save(price));
     }

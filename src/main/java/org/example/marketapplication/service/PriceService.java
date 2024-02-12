@@ -1,13 +1,14 @@
 package org.example.marketapplication.service;
 
-import org.example.marketapplication.dto.PriceDTO;
+import org.example.marketapplication.dto.priceDTO.ReqPriceDTO;
+import org.example.marketapplication.dto.priceDTO.ResPriceDTO;
 
 import java.util.List;
 
 public interface PriceService {
-    PriceDTO getPriceById(Integer id);
-    List<PriceDTO> getAllPrices();
-    PriceDTO createPrice(PriceDTO priceDTO);
-    PriceDTO updatePrice(Integer id, PriceDTO priceDTO);
+    ResPriceDTO getPriceById(Integer id);
+    List<ResPriceDTO> getAllPrices();
+    ResPriceDTO createPrice(ReqPriceDTO priceDTO);
+    ResPriceDTO updatePrice(Integer id, ReqPriceDTO priceDTO);
     void deletePrice(Integer id);
 }

@@ -1,6 +1,5 @@
 package org.example.marketapplication.controller;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.example.marketapplication.dto.CompanyDTO;
 import org.example.marketapplication.service.CompanyService;
@@ -9,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("Company")
+@RequestMapping("company")
 @RequiredArgsConstructor
 public class CompanyController {
 

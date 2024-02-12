@@ -1,6 +1,7 @@
-package org.example.marketapplication.dto;
+package org.example.marketapplication.dto.priceDTO;
 
 import lombok.*;
+import org.example.marketapplication.dto.productDTO.ResProductDTO;
 
 import java.util.Date;
 
@@ -9,10 +10,9 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-public class PriceDTO {
+public class ResPriceDTO {
     private Integer id;
-    private ProductDTO productDTO;
+    private ResProductDTO product;
     private Double price;
     private Date date;
-    private boolean status;
 }

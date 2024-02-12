@@ -1,8 +1,8 @@
 package org.example.marketapplication.controller;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.example.marketapplication.dto.DocumentDTO;
+import org.example.marketapplication.dto.documentDTO.ReqDocumentDTO;
+import org.example.marketapplication.dto.documentDTO.ResDocumentDTO;
 import org.example.marketapplication.service.DocumentService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,24 +17,24 @@ public class DocumentController {
     private final DocumentService service;
 
     @GetMapping
-    public List<DocumentDTO> getAllDocuments(){
+    public List<ResDocumentDTO> getAllDocuments(){
         return service.getAllDocuments();
     }
 
     @GetMapping("{id}")
-    public DocumentDTO getDocument(@PathVariable Integer id){
+    public ResDocumentDTO getDocument(@PathVariable Integer id){
 
         return service.getDocumentById(id);
     }
 
     @PostMapping
-    public DocumentDTO createDocument(@RequestBody DocumentDTO documentDTO){
+    public ResDocumentDTO createDocument(@RequestBody ReqDocumentDTO documentDTO){
 
         return service.createDocument(documentDTO);
     }
 
     @PutMapping("{id}")
-    public DocumentDTO updateDocument(@PathVariable Integer id, @RequestBody DocumentDTO documentDTO ){
+    public ResDocumentDTO updateDocument(@PathVariable Integer id, @RequestBody ReqDocumentDTO documentDTO ){
 
         return service.updateDocument(id, documentDTO);
 

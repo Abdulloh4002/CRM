@@ -1,6 +1,5 @@
 package org.example.marketapplication.controller;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.example.marketapplication.dto.CategoryDTO;
 import org.example.marketapplication.service.CategoryService;
