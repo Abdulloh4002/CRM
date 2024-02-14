@@ -14,21 +14,18 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Document{
+public class StoreDocument {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Company company;
-
-    @OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
-    private Set<IncomingProducts> incomingProducts;
-
     private Integer documentNumber;
+
+    @OneToMany(mappedBy = "document",cascade = CascadeType.ALL)
+    private Set<StoreDocItems> items;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
+
 
 }

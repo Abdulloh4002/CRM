@@ -1,0 +1,52 @@
+package org.example.marketapplication.service.impl;
+
+import lombok.*;
+import org.example.marketapplication.dto.storeDocItemsDTO.ReqStoreDocItemsDTO;
+import org.example.marketapplication.dto.storeDocItemsDTO.ResStoreDocItemsDTO;
+import org.example.marketapplication.entity.StoreDocItems;
+import org.example.marketapplication.mapper.StoreDocItemsMapper;
+import org.example.marketapplication.repository.ProductRepository;
+import org.example.marketapplication.repository.StoreDocItemsRepository;
+import org.example.marketapplication.service.StoreDocItemsService;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@Data
+public class StoreDocItemsServiceImpl implements StoreDocItemsService {
+    private final StoreDocItemsRepository repository;
+    private final StoreDocItemsMapper mapper;
+    private final ProductRepository productRepository;
+
+    @Override
+    public ResStoreDocItemsDTO getStoreDocItemById(Integer id) {
+        return mapper.toDTO(repository.getReferenceById(id));
+    }
+
+    @Override
+    public List<ResStoreDocItemsDTO> getAllStoreDocItems() {
+        return mapper.toListDTO(repository.findAll());
+    }
+
+    @Override
+    public ResStoreDocItemsDTO createStoreDocItem(ReqStoreDocItemsDTO StoreDocItemsDTO) {
+        StoreDocItems storeDocItems = mapper
+                .toEntity(StoreDocItemsDTO);
+        return mapper
+                .toDTO(repository
+                        .save(storeDocItems));
+    }
+
+    @Override
+    public ResStoreDocItemsDTO updateStoreDocItem(Integer id, @org.jetbrains.annotations.NotNull ReqStoreDocItemsDTO StoreDocItemsDTO) {
+        StoreDocItems storeDocItems = repository.getReferenceById(id);
+        return mapper.toDTO(repository.save(storeDocItems));
+    }
+
+    @Override
+    public void deleteStoreDocItem(Integer id) {
+        repository.delete(repository.getReferenceById(id));
+
+    }
+}

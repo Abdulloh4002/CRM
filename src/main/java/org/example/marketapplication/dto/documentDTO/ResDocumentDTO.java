@@ -16,6 +16,7 @@ public class ResDocumentDTO {
     private Integer id;
     private Integer documentNumber;
     private CompanyDTO company;
+    private Set<ResIncomingProductsDTO> incomingProducts;
     private Date date;
 
 }

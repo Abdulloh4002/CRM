@@ -34,8 +34,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ResProductDTO createProduct(ReqProductDTO productDTO) {
         Product product = mapper.toEntity(productDTO);
-//        product.setMeasurement(measurementRepository.getReferenceById(productDTO.getMeasurement()));
-//        product.setCategory(categoryRepository.getReferenceById(productDTO.getCategory()));
         return mapper.toDTO(repository.save(product));
     }
 
@@ -53,5 +51,10 @@ public class ProductServiceImpl implements ProductService {
     public void deleteProduct(Integer id) {
         repository.delete(repository.getReferenceById(id));
 
+    }
+
+    public void save(Product product){
+
+        repository.save(product);
     }
 }

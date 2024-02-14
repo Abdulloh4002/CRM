@@ -36,7 +36,6 @@ public class DocumentServiceImpl implements DocumentService {
     public ResDocumentDTO createDocument(ReqDocumentDTO documentDTO) {
 
         Document document = mapper.toEntity(documentDTO);
-//        document.setCompany(companyRepository.getReferenceById(documentDTO.getCompany()));
 
         return mapper
                 .toDTO(repository

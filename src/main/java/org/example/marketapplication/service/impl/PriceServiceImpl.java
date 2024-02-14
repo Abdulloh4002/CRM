@@ -33,7 +33,6 @@ public class PriceServiceImpl implements PriceService {
     public ResPriceDTO createPrice(ReqPriceDTO priceDTO) {
 
         Price price = mapper.toEntity(priceDTO);
-//        price.setProduct(productRepository.getReferenceById(priceDTO.getProduct()));
         return mapper
                 .toDTO(repository
                         .save(price));

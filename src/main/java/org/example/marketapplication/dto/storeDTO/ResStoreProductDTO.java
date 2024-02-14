@@ -1,17 +1,15 @@
-package org.example.marketapplication.dto.priceDTO;
+package org.example.marketapplication.dto.storeDTO;
 
 import lombok.*;
 import org.example.marketapplication.dto.productDTO.ResProductDTO;
-
-import java.util.Date;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class ResPriceDTO {
+public class ResStoreProductDTO {
     private Integer id;
-    private Double price;
-    private Date date;
+    private ResProductDTO product ;
+    private Double amount;
 }

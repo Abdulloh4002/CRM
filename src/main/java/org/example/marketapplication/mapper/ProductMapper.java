@@ -16,9 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class ProductMapper implements MainMapper<ReqProductDTO, ResProductDTO, Product> {
     @Autowired
-    private CategoryRepository categoryRepository;
+    protected CategoryRepository categoryRepository;
     @Autowired
-    private MeasurementRepository measurementRepository;
+    protected MeasurementRepository measurementRepository;
     @Mapping(target = "category",expression = "java(findCategoryById(productDTO.getCategory()))")
     @Mapping(target = "measurement",expression = "java(findMeasurementById(productDTO.getMeasurement()))")
     public abstract Product toEntity(ReqProductDTO productDTO);

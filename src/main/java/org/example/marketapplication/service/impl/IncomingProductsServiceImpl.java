@@ -20,8 +20,8 @@ import java.util.List;
 public class IncomingProductsServiceImpl implements IncomingProductsService {
     private final IncomingProductsRepository repository;
     private final IncomingProductsMapper mapper;
-    private final ProductRepository productRepository;
     private final PriceRepository priceRepository;
+    private ProductRepository productRepository;
 
     @Override
     public ResIncomingProductsDTO getIncomingProductsById(Integer id) {
@@ -36,14 +36,6 @@ public class IncomingProductsServiceImpl implements IncomingProductsService {
     @Override
     public ResIncomingProductsDTO createIncomingProducts(ReqIncomingProductsDTO incomingProductsDTO) {
         IncomingProducts incomingProducts = mapper.toEntity(incomingProductsDTO);
-
-        Product product = productRepository.getReferenceById(incomingProductsDTO.getProduct());
-        product.setTotalAmount(product.getTotalAmount() + incomingProducts.getAmount());
-        productRepository.save(product);
-
-//        incomingProducts.setProduct(product);
-//        incomingProducts.setPrice(priceRepository.getReferenceById(incomingProductsDTO.getPrice()));
-
         return mapper
                 .toDTO(repository
                         .save(incomingProducts));
@@ -54,11 +46,8 @@ public class IncomingProductsServiceImpl implements IncomingProductsService {
 
         IncomingProducts incomingProducts = repository.getReferenceById(id);
 
-        Product product = productRepository.getReferenceById(incomingProductsDTO.getProduct());
-        product.setTotalAmount(product.getTotalAmount() + incomingProducts.getAmount());
-        productRepository.save(product);
 
-        incomingProducts.setProduct(product);
+        incomingProducts.setProduct(productRepository.getReferenceById(incomingProductsDTO.getProduct()));
         incomingProducts.setPrice(priceRepository.getReferenceById(incomingProductsDTO.getPrice()));
         incomingProducts.setAmount(incomingProductsDTO.getAmount());
 

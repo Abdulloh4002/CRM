@@ -13,4 +13,5 @@ import java.util.Set;
 public class ReqDocumentDTO {
     private Integer documentNumber;
     private Integer company;
+    private Set<ReqIncomingProductsDTO> incomingProducts;
 }

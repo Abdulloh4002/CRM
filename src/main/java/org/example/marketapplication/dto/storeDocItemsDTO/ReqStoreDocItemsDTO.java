@@ -1,4 +1,5 @@
-package org.example.marketapplication.dto.incomingProductsDTO;
+package org.example.marketapplication.dto.storeDocItemsDTO;
+
 
 import lombok.*;
 
@@ -7,8 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ReqIncomingProductsDTO {
+public class ReqStoreDocItemsDTO {
     private Integer product;
-    private Integer price;
     private Double amount;
 }
