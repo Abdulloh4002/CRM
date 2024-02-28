@@ -3,15 +3,12 @@ package org.example.marketapplication.service.impl;
 import lombok.*;
 import org.example.marketapplication.dto.returnDocItems.ReqReturnDocItemsDTO;
 import org.example.marketapplication.dto.returnDocItems.ResReturnDocItemsDTO;
-import org.example.marketapplication.entity.Product;
 import org.example.marketapplication.entity.ReturnDocItems;
 import org.example.marketapplication.entity.StoreProduct;
 import org.example.marketapplication.mapper.ReturnDocItemsMapper;
-import org.example.marketapplication.repository.ProductRepository;
 import org.example.marketapplication.repository.ReturnDocItemsRepository;
 import org.example.marketapplication.repository.StoreProductRepository;
 import org.example.marketapplication.service.ReturnDocItemsService;
-import org.hibernate.query.sqm.EntityTypeException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

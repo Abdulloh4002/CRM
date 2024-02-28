@@ -1,7 +1,6 @@
 package org.example.marketapplication.dto.returnDocumentDTO;
 
 import lombok.*;
-import org.example.marketapplication.dto.CompanyDTO;
 
 import java.util.Date;
 

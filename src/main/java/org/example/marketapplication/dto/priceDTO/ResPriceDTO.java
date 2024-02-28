@@ -1,7 +1,6 @@
 package org.example.marketapplication.dto.priceDTO;
 
 import lombok.*;
-import org.example.marketapplication.dto.productDTO.ResProductDTO;
 
 import java.util.Date;
 

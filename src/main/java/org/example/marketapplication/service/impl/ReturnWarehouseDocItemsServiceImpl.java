@@ -3,17 +3,13 @@ package org.example.marketapplication.service.impl;
 import lombok.*;
 import org.example.marketapplication.dto.returnWarehouseDocItems.ResReturnWarehouseDocItemsDTO;
 import org.example.marketapplication.dto.returnWarehouseDocItems.ReqReturnWarehouseDocItemsDTO;
-import org.example.marketapplication.dto.returnWarehouseDocItems.ResReturnWarehouseDocItemsDTO;
 import org.example.marketapplication.entity.Product;
 import org.example.marketapplication.entity.ReturnWarehouseDocItems;
 import org.example.marketapplication.entity.StoreProduct;
 import org.example.marketapplication.mapper.ReturnWarehouseDocItemsMapper;
-import org.example.marketapplication.mapper.ReturnWarehouseDocItemsMapper;
 import org.example.marketapplication.repository.ProductRepository;
 import org.example.marketapplication.repository.ReturnWarehouseDocItemsRepository;
-import org.example.marketapplication.repository.ReturnWarehouseDocItemsRepository;
 import org.example.marketapplication.repository.StoreProductRepository;
-import org.example.marketapplication.service.ReturnWarehouseDocItemsService;
 import org.example.marketapplication.service.ReturnWarehouseDocItemsService;
 import org.hibernate.query.sqm.EntityTypeException;
 import org.springframework.stereotype.Service;
@@ -27,7 +23,7 @@ public class ReturnWarehouseDocItemsServiceImpl implements ReturnWarehouseDocIte
     private final ReturnWarehouseDocItemsMapper mapper;
     private final StoreProductRepository storeProductRepository;
     private final ProductRepository productRepository;
-     
+
 
     @Override
     public ResReturnWarehouseDocItemsDTO getReturnWarehouseDocItemById(Integer id) {
@@ -45,8 +41,14 @@ public class ReturnWarehouseDocItemsServiceImpl implements ReturnWarehouseDocIte
                 .toEntity(returnWarehouseDocItemsDTO);
 
         StoreProduct storeProduct = storeProductRepository.getReferenceById(returnWarehouseDocItemsDTO.getProduct());
-        storeProduct.setAmount(storeProduct.getAmount()+returnWarehouseDocItemsDTO.getAmount());
+        if(storeProduct.getAmount()<returnWarehouseDocItemsDTO.getAmount()){
+            throw new EntityTypeException("The amount is more than the actual amount","ReturnWarehouseDocItems service");
+        }
+        storeProduct.setAmount(storeProduct.getAmount()-returnWarehouseDocItemsDTO.getAmount());
         storeProductRepository.save(storeProduct);
+        Product product = productRepository.getReferenceById(returnWarehouseDocItemsDTO.getProduct());
+        product.setTotalAmount(product.getTotalAmount()+returnWarehouseDocItemsDTO.getAmount());
+        productRepository.save(product);
         return mapper
                 .toDTO(repository
                         .save(returnWarehouseDocItems));

@@ -2,13 +2,11 @@ package org.example.marketapplication.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-//import org.example.marketapplication.listener.DocumentListener;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 import java.util.Set;
 
-//@EntityListeners(DocumentListener.class)
 @Entity
 @Builder
 @Getter

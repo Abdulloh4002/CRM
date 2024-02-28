@@ -1,10 +1,8 @@
 package org.example.marketapplication.dto.storeDocumentDTO;
 
 import lombok.*;
-import org.example.marketapplication.dto.storeDocItemsDTO.ResStoreDocItemsDTO;
 
 import java.util.Date;
-import java.util.Set;
 
 @Builder
 @AllArgsConstructor

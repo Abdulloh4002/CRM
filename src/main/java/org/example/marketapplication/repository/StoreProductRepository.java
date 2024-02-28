@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StoreProductRepository extends JpaRepository<StoreProduct, Integer> {
     Boolean existsByProductId(Integer productId);
-    Integer findByProductId(Integer productId);
+    StoreProduct findByProductId(Integer productId);
 
 }

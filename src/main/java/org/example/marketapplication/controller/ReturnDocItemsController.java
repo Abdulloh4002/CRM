@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("returnDocItems")
 @RequiredArgsConstructor
-public class ReturnDocItemsControler {
+public class ReturnDocItemsController {
 
 
     private final ReturnDocItemsService service;

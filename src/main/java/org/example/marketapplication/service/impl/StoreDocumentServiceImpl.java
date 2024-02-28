@@ -34,32 +34,6 @@ public class StoreDocumentServiceImpl implements StoreDocumentService {
     public ResStoreDocumentDTO createStoreDocument(ReqStoreDocumentDTO storeDocumentDTO) {
         StoreDocument storeDocument = mapper
                 .toEntity(storeDocumentDTO);
-//        List<StoreDocItems> list = new java.util.ArrayList<>(storeDocument.getItems().stream().toList());
-//        for (int i=0;i<list.size();i++){
-//
-//            StoreDocItems storeDocItem = list.get(i);
-//            Product product = productRepository.getReferenceById(storeDocItem.getProduct().getId());
-//            if (storeDocItem.getAmount()> product.getTotalAmount()){
-//                throw new EntityTypeException("The given amount is more than the actual amount","StoreDocItems");
-//            }else{
-//                product.setTotalAmount(product.getTotalAmount()-storeDocItem.getAmount());
-//                productRepository.save(product);
-//            }
-//            if(storeProductRepository.existsByProductId(storeDocItem.getProduct().getId())==null){
-//                StoreProduct storeProduct = StoreProduct.builder()
-//                        .amount(storeDocItem.getAmount())
-//                        .product(storeDocItem.getProduct())
-//                .build();
-//                storeProductRepository.save(storeProduct);
-//            }else{
-//                StoreProduct storeProduct = storeProductRepository.getReferenceById(storeProductRepository.findByProductId(storeDocItem.getProduct().getId()));
-//                storeProduct.setAmount(storeProduct.getAmount()+storeDocItem.getAmount());
-//                storeProductRepository.save(storeProduct);
-//            }
-//            storeDocItem.setDocument(storeDocument);
-//            list.set(i, storeDocItem);
-//        }
-//        storeDocument.setItems(new HashSet<>(list));
 
         return mapper
                 .toDTO(repository

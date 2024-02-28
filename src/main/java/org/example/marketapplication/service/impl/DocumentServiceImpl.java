@@ -1,10 +1,8 @@
 package org.example.marketapplication.service.impl;
 
 import lombok.*;
-import org.example.marketapplication.dto.acceptDocItemsDTO.ReqAcceptDocItemsDTO;
 import org.example.marketapplication.dto.documentDTO.ReqDocumentDTO;
 import org.example.marketapplication.dto.documentDTO.ResDocumentDTO;
-import org.example.marketapplication.entity.AcceptDocItems;
 import org.example.marketapplication.entity.Document;
 import org.example.marketapplication.mapper.DocumentMapper;
 import org.example.marketapplication.mapper.AcceptDocItemsMapper;
@@ -15,9 +13,7 @@ import org.example.marketapplication.service.AcceptDocItemsService;
 import org.example.marketapplication.service.DocumentService;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @Data

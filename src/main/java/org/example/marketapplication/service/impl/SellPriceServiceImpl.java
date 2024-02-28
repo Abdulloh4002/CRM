@@ -5,8 +5,8 @@ import org.example.marketapplication.dto.sellPriceDTO.ReqSellPriceDTO;
 import org.example.marketapplication.dto.sellPriceDTO.ResSellPriceDTO;
 import org.example.marketapplication.entity.SellPrice;
 import org.example.marketapplication.mapper.SellPriceMapper;
-import org.example.marketapplication.repository.ProductRepository;
 import org.example.marketapplication.repository.SellPriceRepository;
+import org.example.marketapplication.repository.StoreProductRepository;
 import org.example.marketapplication.service.SellPriceService;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ import java.util.List;
 public class SellPriceServiceImpl implements SellPriceService {
     private final SellPriceRepository repository;
     private final SellPriceMapper mapper;
-    private final ProductRepository productRepository;
+    private final StoreProductRepository storeProductRepository;
 
     @Override
     public ResSellPriceDTO getSellPriceById(Integer id) {
@@ -44,7 +44,7 @@ public class SellPriceServiceImpl implements SellPriceService {
         SellPrice sellPrice = repository.getReferenceById(id);
         sellPrice.setPrice(priceDTO.getPrice());
         sellPrice.setDate(priceDTO.getDate());
-        sellPrice.setProduct(productRepository.getReferenceById(priceDTO.getProduct()));
+        sellPrice.setProduct(storeProductRepository.getReferenceById(priceDTO.getProduct()));
         return mapper.toDTO(repository.save(sellPrice));
     }
 

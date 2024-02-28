@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("returnWarehouseDocItems")
 @RequiredArgsConstructor
-public class ReturnWarehouseDocItemsControler {
+public class ReturnWarehouseDocItemsController {
 
 
     private final ReturnWarehouseDocItemsService service;

@@ -10,10 +10,8 @@ import org.example.marketapplication.repository.SellDocumentRepository;
 import org.example.marketapplication.repository.StoreDocumentRepository;
 import org.example.marketapplication.repository.StoreProductRepository;
 import org.example.marketapplication.service.SellDocumentService;
-import org.hibernate.query.sqm.EntityTypeException;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
 
 @Service

@@ -5,9 +5,11 @@ import org.example.marketapplication.dto.storeDocItemsDTO.ReqStoreDocItemsDTO;
 import org.example.marketapplication.dto.storeDocItemsDTO.ResStoreDocItemsDTO;
 import org.example.marketapplication.entity.Product;
 import org.example.marketapplication.entity.StoreDocItems;
+import org.example.marketapplication.entity.StoreProduct;
 import org.example.marketapplication.mapper.StoreDocItemsMapper;
 import org.example.marketapplication.repository.ProductRepository;
 import org.example.marketapplication.repository.StoreDocItemsRepository;
+import org.example.marketapplication.repository.StoreProductRepository;
 import org.example.marketapplication.service.StoreDocItemsService;
 import org.hibernate.query.sqm.EntityTypeException;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ public class StoreDocItemsServiceImpl implements StoreDocItemsService {
     private final StoreDocItemsRepository repository;
     private final StoreDocItemsMapper mapper;
     private final ProductRepository productRepository;
+    private final StoreProductRepository storeProductRepository;
 
 
     @Override
@@ -44,6 +47,17 @@ public class StoreDocItemsServiceImpl implements StoreDocItemsService {
             product.setTotalAmount(product.getTotalAmount()-storeDocItemsDTO.getAmount());
             productRepository.save(product);
         }
+        Boolean exists = storeProductRepository.existsByProductId(product.getId());
+        StoreProduct storeProduct;
+        if(exists){
+            storeProduct = storeProductRepository.findByProductId(product.getId());
+            storeProduct.setAmount(storeProduct.getAmount()+storeDocItemsDTO.getAmount());
+        }else{
+            storeProduct = StoreProduct.builder()
+                    .amount(storeDocItemsDTO.getAmount())
+                    .product(product).build();
+        }
+        storeProductRepository.save(storeProduct);
         return mapper
                 .toDTO(repository
                         .save(storeDocItems));
