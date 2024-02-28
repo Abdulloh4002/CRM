@@ -1,7 +1,7 @@
 package org.example.marketapplication.dto.documentDTO;
 
 import lombok.*;
-import org.example.marketapplication.dto.incomingProductsDTO.ReqIncomingProductsDTO;
+import org.example.marketapplication.dto.acceptDocItemsDTO.ReqAcceptDocItemsDTO;
 
 import java.util.Set;
 
@@ -13,5 +13,4 @@ import java.util.Set;
 public class ReqDocumentDTO {
     private Integer documentNumber;
     private Integer company;
-    private Set<ReqIncomingProductsDTO> incomingProducts;
 }

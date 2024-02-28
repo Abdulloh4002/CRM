@@ -20,8 +20,6 @@ public class StoreDocument {
     private Integer id;
     private Integer documentNumber;
 
-    @OneToMany(mappedBy = "document",cascade = CascadeType.ALL)
-    private Set<StoreDocItems> items;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

@@ -13,6 +13,5 @@ import java.util.Set;
 @Setter
 public class ReqStoreDocumentDTO {
     private Integer documentNumber;
-    private Set<ReqStoreDocItemsDTO> items;
     private Date date;
 }

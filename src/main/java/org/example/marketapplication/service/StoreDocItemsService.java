@@ -13,4 +13,5 @@ public interface StoreDocItemsService {
     ResStoreDocItemsDTO createStoreDocItem(ReqStoreDocItemsDTO storeDocItemsDTO);
     ResStoreDocItemsDTO updateStoreDocItem(Integer id, ReqStoreDocItemsDTO storeDocItemsDTO);
     void deleteStoreDocItem(Integer id);
+    List<ResStoreDocItemsDTO> findAllByDocument(Integer id);
 }

@@ -2,7 +2,7 @@ package org.example.marketapplication.dto.documentDTO;
 
 import lombok.*;
 import org.example.marketapplication.dto.CompanyDTO;
-import org.example.marketapplication.dto.incomingProductsDTO.ResIncomingProductsDTO;
+import org.example.marketapplication.dto.acceptDocItemsDTO.ResAcceptDocItemsDTO;
 
 import java.util.Date;
 import java.util.Set;
@@ -16,7 +16,6 @@ public class ResDocumentDTO {
     private Integer id;
     private Integer documentNumber;
     private CompanyDTO company;
-    private Set<ResIncomingProductsDTO> incomingProducts;
     private Date date;
 
 }

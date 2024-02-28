@@ -14,7 +14,6 @@ import java.util.Set;
 public class ResStoreDocumentDTO {
     private Integer id;
     private Integer documentNumber;
-    private Set<ResStoreDocItemsDTO> items;
     private Date date;
 
 }
