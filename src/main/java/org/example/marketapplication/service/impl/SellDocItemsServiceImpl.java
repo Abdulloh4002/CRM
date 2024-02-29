@@ -38,10 +38,10 @@ public class SellDocItemsServiceImpl implements SellDocItemsService {
         SellDocItems sellDocItems = mapper
                 .toEntity(sellDocItemsDTO);
 
-        if (sellDocItems.getAmount()>storeProductRepository.getReferenceById(sellDocItemsDTO.getStoreProduct()).getAmount()){
+        if (sellDocItems.getAmount()>storeProductRepository.getReferenceById(sellDocItemsDTO.getProduct()).getAmount()){
             throw new EntityTypeException("Not enough amount of storeProduct","StoreProduct");
         }else {
-            StoreProduct storeProduct = storeProductRepository.getReferenceById(sellDocItemsDTO.getStoreProduct());
+            StoreProduct storeProduct = storeProductRepository.getReferenceById(sellDocItemsDTO.getProduct());
             storeProduct.setAmount(storeProduct.getAmount()- sellDocItemsDTO.getAmount());
             storeProductRepository.save(storeProduct);
         }
@@ -60,5 +60,10 @@ public class SellDocItemsServiceImpl implements SellDocItemsService {
     public void deleteSellDocItem(Integer id) {
         repository.delete(repository.getReferenceById(id));
 
+    }
+
+    @Override
+    public List<ResSellDocItemsDTO> findAllByDocument(Integer id) {
+        return mapper.toListDTO(repository.findAllByDocumentId(id));
     }
 }

@@ -2,7 +2,7 @@ package org.example.marketapplication.dto.returnDocItems;
 
 
 import lombok.*;
-import org.example.marketapplication.dto.productDTO.ResProductDTO;
+import org.example.marketapplication.dto.StoreProductDTO;
 import org.example.marketapplication.dto.returnDocumentDTO.ResReturnDocumentDTO;
 
 @Builder
@@ -13,6 +13,6 @@ import org.example.marketapplication.dto.returnDocumentDTO.ResReturnDocumentDTO;
 public class ResReturnDocItemsDTO {
     private Integer id;
     private ResReturnDocumentDTO document;
-    private ResProductDTO product;
+    private StoreProductDTO product;
     private Double amount;
 }

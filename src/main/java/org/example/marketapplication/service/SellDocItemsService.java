@@ -12,4 +12,5 @@ public interface SellDocItemsService {
     ResSellDocItemsDTO createSellDocItem(ReqSellDocItemsDTO sellDocItemsDTO);
     ResSellDocItemsDTO updateSellDocItem(Integer id, ReqSellDocItemsDTO sellDocItemsDTO);
     void deleteSellDocItem(Integer id);
+    List<ResSellDocItemsDTO> findAllByDocument(Integer id);
 }

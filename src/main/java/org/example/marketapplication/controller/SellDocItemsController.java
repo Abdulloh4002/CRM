@@ -46,4 +46,8 @@ public class SellDocItemsController {
 
         service.deleteSellDocItem(id);
     }
+    @GetMapping("document/{id}")
+    public List<ResSellDocItemsDTO> findAllByDocument(@PathVariable Integer id){
+        return service.findAllByDocument(id);
+    }
 }

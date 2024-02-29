@@ -12,7 +12,7 @@ import org.example.marketapplication.dto.sellPriceDTO.ResSellPriceDTO;
 @Setter
 public class ResSellDocItemsDTO {
     private Integer id;
-    private StoreProductDTO storeProduct;
+    private StoreProductDTO product;
     private ResSellDocumentDTO document;
     private ResSellPriceDTO price;
     private Double amount;

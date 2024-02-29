@@ -37,26 +37,25 @@ public class StoreDocItemsServiceImpl implements StoreDocItemsService {
 
     @Override
     public ResStoreDocItemsDTO createStoreDocItem(ReqStoreDocItemsDTO storeDocItemsDTO) {
+        Product product = productRepository.getReferenceById(storeDocItemsDTO.getProduct());
+        Boolean exists = storeProductRepository.existsByProductId(product.getId());
+        StoreProduct storeProduct;
+        if(!exists){
+            storeProduct = StoreProduct.builder()
+                    .product(product).build();
+            storeProductRepository.save(storeProduct);
+        }
+        storeProduct = storeProductRepository.findByProductId(storeDocItemsDTO.getProduct());
         StoreDocItems storeDocItems = mapper
                 .toEntity(storeDocItemsDTO);
 
-        Product product = productRepository.getReferenceById(storeDocItemsDTO.getProduct());
         if(product.getTotalAmount()<storeDocItems.getAmount()){
             throw new EntityTypeException("The amount is less than the actual amount","StoreProduct");
         }else{
             product.setTotalAmount(product.getTotalAmount()-storeDocItemsDTO.getAmount());
             productRepository.save(product);
         }
-        Boolean exists = storeProductRepository.existsByProductId(product.getId());
-        StoreProduct storeProduct;
-        if(exists){
-            storeProduct = storeProductRepository.findByProductId(product.getId());
-            storeProduct.setAmount(storeProduct.getAmount()+storeDocItemsDTO.getAmount());
-        }else{
-            storeProduct = StoreProduct.builder()
-                    .amount(storeDocItemsDTO.getAmount())
-                    .product(product).build();
-        }
+        storeProduct.setAmount(storeProduct.getAmount() + storeDocItemsDTO.getAmount());
         storeProductRepository.save(storeProduct);
         return mapper
                 .toDTO(repository

@@ -8,7 +8,8 @@ import lombok.*;
 @Getter
 @Setter
 public class ReqSellDocItemsDTO {
-    private Integer storeProduct;
+    private Integer product;
+    private Integer document;
     private Double amount;
     private Integer price;
 }
